@@ -1,0 +1,9 @@
+ <Card>
+            <Card.Headder>
+              <span>title</span>
+            </Card.Headder>
+            <div>
+              <Button>Edit</Button>
+              <Button variant="danger" className="mx-2">Delete</Button>
+            </div>
+          </Card>
