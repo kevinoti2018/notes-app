@@ -43,7 +43,7 @@ const RegisterPage = () => {
     }
   return (
     <MainScreen title="Register">
-        <div>
+        <div className="loginContainer">
         {error &&  <ErrorMessage variant="danger" >{error}</ErrorMessage>}
         {message && <ErrorMessage variant="danger" >{message}</ErrorMessage>}
         {loading && <Loading/>}   
