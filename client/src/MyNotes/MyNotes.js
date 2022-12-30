@@ -1,14 +1,24 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import MainScreen from './../components/MainScreen';
 import { Link } from 'react-router-dom';
 import { Button ,Card,Badge,Accordion} from 'react-bootstrap';
 import notes from "../data/noes"
+import axios from 'axios'
 const MyNotes = () => {
   const deleteHandler= ()=>{
     if(window.confirm("Are you sure?")){
 
     }
   }
+
+  const fetchNotes= async()=>{
+    const data = await axios.get("/api/notes");
+    console.log(data)
+  }
+  useEffect(() => {
+    fetchNotes()
+  }, [])
+  
   return (
     <div>
         <MainScreen title=" Welcom Back Kevin..">
@@ -34,7 +44,7 @@ const MyNotes = () => {
                 fontSize:12
               }}
               >
-              <Accordion.Header style={{outline:"none"}}>{note.title}</Accordion.Header>
+              <Accordion.Header >{note.title}</Accordion.Header>
               </span>
               <div>
                   <Button href={`/note/${note._id}`} >Edit</Button>
@@ -50,13 +60,13 @@ const MyNotes = () => {
               </h4>
             <blockquote className="blockquote mb-0">
             <p>
-              {note.content}
+              {note.content} 
             </p>
             <footer className="blockquote-footer">
              Created on - date
             </footer>
           </blockquote>
-            </Card.Body>
+            </Card.Body>  
               </Accordion.Body>
               
               
