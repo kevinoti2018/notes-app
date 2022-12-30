@@ -16,7 +16,7 @@ const LoginPage = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+ 
   const submitHandler = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -42,7 +42,7 @@ const LoginPage = () => {
     <MainScreen title="LOGIN">
       <div className="loginContainer">
         {loading && <Loading />}
-        {error && <div>{error}</div>}
+        {error && <div variant="danger">{error}</div>}
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>

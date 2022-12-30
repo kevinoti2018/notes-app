@@ -14,7 +14,7 @@ app.listen(PORT, () => {
 
 app.use(express.json());
 app.use(require("cors")());
-// app.use(notFound , errorHandler)
+app.use(notFound , errorHandler)
 app.get("/", (req, res) => {
   res.send("Hello");
 });
