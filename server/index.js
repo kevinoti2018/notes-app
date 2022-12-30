@@ -8,6 +8,7 @@ const app = express()
 const PORT =process.env.PORT|| 5000
 connectDB()
 app.use(express.json())
+app.use(require('cors')())
 // app.use(notFound , errorHandler)
 app.get('/',(req,res)=>{
     res.send("Hello")
