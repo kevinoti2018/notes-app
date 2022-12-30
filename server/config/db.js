@@ -7,6 +7,7 @@ const connectDB = async ()=>{
             useNewUrlParser: true,
           
         })
+        
         console.log(`connected: ${conn.connection.host}`);
     }
     catch(err){
