@@ -25,8 +25,8 @@ const RegisterPage = () => {
             setMessage(null)
             try{
                 setLoading(true)
-                const {data}= await axios.post("http://localhost:5000/api/users",{name,pic,email,password}, {
-                    // baseURL: "http://localhost:5000",
+                const {data}= await axios.post("/api/users/",{name,pic,email,password}, {
+                    baseURL: "http://localhost:5000",
                     headers: {
                       "Content-Type": "application/json",
                     }
