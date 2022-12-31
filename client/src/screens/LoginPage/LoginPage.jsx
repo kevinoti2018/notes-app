@@ -29,7 +29,7 @@ const LoginPage = () => {
       });
 
       localStorage.setItem("userInfo", JSON.stringify(response.data));
-      console.log(values);
+      // console.log(values);
       setLoading(false);
       resetForm();
     } catch (err) {
