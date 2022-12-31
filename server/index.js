@@ -3,8 +3,7 @@ require("dotenv").config();
 const notes = require("./data/noes.js");
 const userRoutes = require("./routes/userRoutes");
 const connectDB = require("./config/db");
-const { notFound, errorHandler } = require("./middlewares/errorMiddleWare");
-const cors= require('cors')
+const cors = require("cors");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -13,15 +12,16 @@ connectDB();
 // app.use(notFound , errorHandler)
 app.use(express.json());
 
-app.use(cors({
-  allowedHeaders: "*",
-  allowedMethods:"*",
-  origin:"*"
-}))
+app.use(
+  cors({
+    allowedHeaders: "*",
+    allowedMethods: "*",
+    origin: "*",
+  })
+);
 app.get("/", (req, res) => {
   res.send("Hello");
 });
-
 
 app.get("/api/notes", (req, res) => {
   res.json(notes);
