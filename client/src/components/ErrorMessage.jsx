@@ -1,11 +1,15 @@
 import React from "react";
-import { Alert } from "react-bootstrap";
 
-const ErrorMessage = ({ variant = "info", children }) => {
+const ErrorMessage = ({ errors, variant }) => {
+  if (!errors) {
+    return null;
+  }
   return (
-    <Alert variant={variant} style={{ fontSize: 20 }}>
-      <strong>{children}</strong>
-    </Alert>
+    <div className={`alert alert-${variant}`}>
+      {Object.values(errors).map((error) => (
+        <p key={error}>{error}</p>
+      ))}
+    </div>
   );
 };
 

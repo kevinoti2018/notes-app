@@ -16,7 +16,7 @@ const LoginPage = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
- 
+
   const submitHandler = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -29,11 +29,12 @@ const LoginPage = () => {
       });
 
       localStorage.setItem("userInfo", JSON.stringify(response.data));
-      console.log(values);
+      console.log(response.data);
       setLoading(false);
       resetForm();
     } catch (err) {
-      setError(err.message);
+      console.log(err);
+      setError(err.error);
       setLoading(false);
     }
   };
@@ -42,7 +43,7 @@ const LoginPage = () => {
     <MainScreen title="LOGIN">
       <div className="loginContainer">
         {loading && <Loading />}
-        {error && <div variant="danger">{error}</div>}
+        {error && <div>{error}</div>}
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
