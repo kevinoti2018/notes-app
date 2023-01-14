@@ -1,11 +1,11 @@
 
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
-import LandingPage from './screens/LandingPage/LandingPage';
+import LandingPage from './pages/LandingPage/LandingPage';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import MyNotes from './MyNotes/MyNotes';
-import LoginPage from './screens/LoginPage/LoginPage';
-import RegisterPage from './screens/RegisterPage/RegisterPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
 function App() {
   return (
     <BrowserRouter>

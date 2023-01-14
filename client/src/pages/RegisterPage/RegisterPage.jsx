@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import './register.css'
 import MainScreen from './../../components/MainScreen';
-import { Form ,Button} from 'react-bootstrap';
+import { Form ,Button,Col} from 'react-bootstrap';
 import axios from 'axios'
 import ErrorMessage from './../../components/ErrorMessage';
 import Loading from './../../components/Loading';
+import { Link } from 'react-router-dom';
 const RegisterPage = () => {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -40,10 +41,34 @@ const RegisterPage = () => {
             }
         }
         console.log(email);
+    };
+    const postDetails =(pics)=>{
+     
+      if(!pic){
+        return setPicMessage("Please select an image")
+      }
+      setPicMessage(null)
+      if(pics.type === 'image/jpeg'|| pics.type==='image/png'){
+        const data = new FormData()
+        data.append('file',pics)
+        data.append('upload_preset','tvfut1sh')
+        // data.append('cloud_name','tvfut1sh')
+        fetch('https://api.cloudinary.com/v1_1/kev-otiz/image/upload',{
+          method:'post',
+          body: data,
+        }).then((res)=> res.json()).then((data)=>{
+          console.log(data);
+          setPic(data.url.toString())
+        })
+      }else{
+        setPicMessage('please select an image')
+      }
+
     }
   return (
     <MainScreen title="Register">
         <div className="loginContainer">
+        {picMessage &&  <ErrorMessage variant="danger" >{picMessage}</ErrorMessage>}
         {error &&  <ErrorMessage variant="danger" >{error}</ErrorMessage>}
         {message && <ErrorMessage variant="danger" >{message}</ErrorMessage>}
         {loading && <Loading/>}   
@@ -77,14 +102,22 @@ const RegisterPage = () => {
                 placeholder="Confirm Password"
                 onChange={(e) => setConfirmPassword(e.target.value)} />
                  </Form.Group>
-                 <Form.Group controlId="formFile" className="mb-3">
+                 <Form.Group controlId="formFile" className="mb-3"
+                 onChange={(e)=> postDetails(e.target.files[0])}
+                 
+                 >
                  <Form.Label>upload profile picture</Form.Label>
-                 <Form.Control type="file"   />
+                 <Form.Control type="file"  
+                //  onChange={(e)=>{ postDetails(e.target.fils[0])}}
+                 />
                </Form.Group>
 
                  <Button variant="primary" type="submit">
                     Register
                 </Button>
+                <Col>
+            Have an account? <Link to="/login"> Login Here </Link>
+          </Col>
             </Form>
         </div>
     </MainScreen>

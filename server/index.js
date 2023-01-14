@@ -10,14 +10,15 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 connectDB();
 
-// app.use(notFound , errorHandler)
-app.use(express.json());
 
+app.use(express.json());
 app.use(cors({
   allowedHeaders: "*",
   allowedMethods:"*",
   origin:"*"
 }))
+
+// app.use(notFound , errorHandler)
 app.get("/", (req, res) => {
   res.send("Hello");
 });
