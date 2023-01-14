@@ -44,21 +44,24 @@ const RegisterPage = () => {
     };
     const postDetails =(pics)=>{
      
-      if(!pic){
+      if(!pics){
         return setPicMessage("Please select an image")
       }
       setPicMessage(null)
       if(pics.type === 'image/jpeg'|| pics.type==='image/png'){
         const data = new FormData()
         data.append('file',pics)
-        data.append('upload_preset','tvfut1sh')
-        // data.append('cloud_name','tvfut1sh')
+        data.append('upload_preset','notezipper')
+         data.append('cloud_name','kev-otiz')
         fetch('https://api.cloudinary.com/v1_1/kev-otiz/image/upload',{
           method:'post',
           body: data,
         }).then((res)=> res.json()).then((data)=>{
           console.log(data);
           setPic(data.url.toString())
+        })
+        .catch(err=>{
+          console.log(err);
         })
       }else{
         setPicMessage('please select an image')
